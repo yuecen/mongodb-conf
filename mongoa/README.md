@@ -1,5 +1,7 @@
 
-vi /etc/rc.local
-add "mongod --config /root/mongo01.conf"
+* vi /etc/rc.local
 
+'''
+mongod --config /root/mongo01.conf
+'''
 
