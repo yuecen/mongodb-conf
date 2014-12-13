@@ -1,0 +1,3 @@
+2 1     * * *   root    killall -SIGUSR1 mongod
+#2 1     * * *   root    mongo localhost:27019 --eval 'db.getSisterDB("admin").runCommand("logRotate")' >/dev/null
+
