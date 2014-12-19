@@ -1,0 +1,54 @@
+// [production]
+
+// for administrator
+db.addUser({
+	user: "admin01",
+	pwd: "passwd",
+	roles: ["readWriteAnyDatabase",
+	"clusterAdmin",
+	"userAdminAnyDatabase",
+	"dbAdminAnyDatabase"]
+})
+
+------------------------------------------------------------------------
+
+// for data
+db.addUser({
+	user: "data",
+	pwd: "passwd",
+	roles: ["readWriteAnyDatabase",
+	"clusterAdmin",
+	"userAdminAnyDatabase",
+	"dbAdminAnyDatabase"]
+})
+
+------------------------------------------------------------------------
+
+// for app
+use admin
+db.removeUser("app")
+db.addUser({
+	user: "app",
+	pwd: "passwd",
+	roles: ["read"],
+	otherDBRoles: {
+		db01: ["read"],
+		db03: ["readWrite"],
+	}
+})
+[read] 
+db02 db04
+[readWrite]
+db05
+
+// db.addUser({user: "user01", pwd: "passwd", roles: ["read"]})
+// db.addUser({user: "user02", pwd: "passwd", roles: ["readWrite"]})
+
+------------------------------------------------------------------------
+
+// others
+
+// User03, db01 db02
+db.addUser({user: "user03", pwd: "passed", roles: ["read"]})
+// User04, db02 db03
+db.addUser({user: "user04", pwd: "passwd", roles: ["read"]})
